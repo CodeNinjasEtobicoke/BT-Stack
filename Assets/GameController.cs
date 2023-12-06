@@ -73,12 +73,12 @@ public class GameController : MonoBehaviour
         currentCube.name = Level + "";
         currentCube.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.HSVToRGB((Level / 100f) % 1f, 1f, 1f));
         Level++;
-        Camera.main.transform.position = currentCube.transform + new Vector3(100, 100, 100);
+        Camera.main.transform.position = currentCube.transform.position + new Vector3(100, 100, 100);
         Camera.main.transform.LookAt(currentCube.transform.position + new Vector3(100, 100, 100);
     }
     IEnumerator X()
     {
-        yeild return new WaitForSeconds(3f);
-        SceneManager.loadScene("SampleScene")
+        yield return new WaitForSeconds(3f);
+        //SceneManager.LoadScene("SampleScene");
     }  
 }
