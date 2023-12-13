@@ -30,19 +30,30 @@ public class GameController : MonoBehaviour
         {
             return;
         }
+
+
         var time = Mathf.Abs(Time.realtimeSinceStartup % 2f - 1f);
         var pos1 = lastCube.transform.position + Vector3.up * 10f;
         var pos2 = pos1 + ((Level % 2 == 0) ? Vector3.left : Vector3.forward) * 120;
+
+        Vector3 pos3 = pos1 + ((Level % 3 == 0) ? Vector3.right : Vector3.back) * 120;
+
         if(Level % 2 == 0)
         {
             currentCube.transform.position = Vector3.Lerp(pos2, pos1, time);
         }
+        else if(Level % 3 == 0)
+        {
+
+        }
         else
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                NewBlock();
-            }
+            currentCube.transform.position = Vector3.Lerp(pos1, pos2, time);
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            NewBlock();
+            text.text = "Score:" + Level;
         }
     }
     void NewBlock()
@@ -62,7 +73,6 @@ public class GameController : MonoBehaviour
             if (currentCube.transform.localScale.x <= 0f || currentCube.transform.localScale.z <= 0f)
             {
                 Done = true;
-                text.gameObject.SetActive(true);
                 text.text = "Final Score:" + Level;
                 StartCoroutine(X());
                 return;
