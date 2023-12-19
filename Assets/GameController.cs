@@ -42,9 +42,13 @@ public class GameController : MonoBehaviour
         {
             currentCube.transform.position = Vector3.Lerp(pos2, pos1, time);
         }
-        else if(Level % 3 == 0)
+        else if(Level % 3 == 1)
         {
-
+            currentCube.transform.position = Vector3.Lerp(pos3, pos1, time);
+        }
+        else if (Level % 5 == 2)
+        {
+            currentCube.transform.position = Vector3.Lerp(pos1, pos3, time);
         }
         else
         {
